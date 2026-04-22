@@ -8,246 +8,191 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family:Poppins, sans-serif; background:#0a0a0a; color:#fff; scroll-behavior:smooth;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Poppins,sans-serif;background:#fff;color:#111;}
 
-nav {
-    position:fixed;
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    padding:20px 50px;
-    background:rgba(0,0,0,0.6);
-    backdrop-filter:blur(10px);
-    z-index:1000;
+nav{
+position:fixed;width:100%;display:flex;justify-content:space-between;
+padding:20px;background:#fff;border-bottom:1px solid #eee;z-index:1000;
 }
 
-nav a {color:#fff; margin-left:20px; text-decoration:none;}
-nav a:hover {color:#f5a623;}
+nav a{text-decoration:none;margin-left:20px;color:#111;}
+nav a:hover{color:#f5a623;}
 
-.hero {
-    height:100vh;
-    position:relative;
+.hero{
+height:100vh;display:flex;flex-direction:column;
+justify-content:center;align-items:center;text-align:center;
+padding:20px;
 }
 
-.hero video {
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.hero h1{font-size:2.5rem;}
+.hero p{margin:15px 0;color:#555;}
+
+.btn{
+padding:12px 25px;margin:10px;border:none;
+background:#f5a623;color:#000;font-weight:600;cursor:pointer;
 }
 
-.overlay {
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9));
+section{padding:80px 20px;}
+h2{text-align:center;margin-bottom:40px;}
+
+.services,.pricing{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
-.hero-content {
-    position:relative;
-    z-index:2;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+.card{
+border:1px solid #eee;padding:20px;border-radius:10px;
 }
 
-.hero h1 {font-size:3rem;}
-.hero p {color:#ccc; margin:10px;}
-
-.btn {
-    padding:12px 25px;
-    margin:10px;
-    border:none;
-    background:#f5a623;
-    color:#000;
-    cursor:pointer;
-    font-weight:600;
+.portfolio{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
 }
 
-section {padding:100px 50px;}
-h2 {text-align:center; margin-bottom:40px;}
+.portfolio img{width:100%;border-radius:10px;}
 
-.services {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+.whatsapp{
+position:fixed;bottom:20px;right:20px;
+background:#25D366;color:#fff;padding:15px;border-radius:50%;
+cursor:pointer;
 }
 
-.card {
-    background:#111;
-    padding:20px;
-    border-radius:10px;
-    transition:0.3s;
-}
-
-.card:hover {transform:translateY(-10px);}
-
-.portfolio {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-}
-
-.portfolio img {
-    width:100%;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-/* Lightbox */
-#lightbox {
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,0.9);
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
-
-#lightbox img {
-    max-width:90%;
-    max-height:90%;
-}
-
-/* WhatsApp floating button */
-.whatsapp {
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    color:#fff;
-    padding:15px;
-    border-radius:50%;
-    font-size:20px;
-    cursor:pointer;
-}
-
-/* Contact */
-form {
-    max-width:500px;
-    margin:auto;
-    display:flex;
-    flex-direction:column;
-}
-
-input, textarea {
-    margin-bottom:10px;
-    padding:12px;
-    border:none;
-    border-radius:6px;
-}
-
-footer {
-    text-align:center;
-    padding:20px;
-    background:#000;
-}
+footer{text-align:center;padding:20px;border-top:1px solid #eee;}
 </style>
 </head>
 
 <body>
 
 <nav>
-    <h3>BEBA Visuals</h3>
-    <div>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-    </div>
+<h3>BEBA Visuals</h3>
+<div>
+<a href="#services">Services</a>
+<a href="#portfolio">Work</a>
+<a href="#pricing">Pricing</a>
+<a href="#contact">Contact</a>
+</div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-    <video autoplay muted loop>
-        <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
-    </video>
-    <div class="overlay"></div>
-
-    <div class="hero-content">
-        <h1>We Bring Spaces to Life</h1>
-        <p>Premium Visual Storytelling in Addis Ababa</p>
-        <div>
-            <button class="btn" onclick="scrollToSection('portfolio')">View Portfolio</button>
-            <button class="btn" onclick="openWhatsApp()">Book a Service</button>
-        </div>
-    </div>
+<h1>We Help Businesses Get More Customers Through Content</h1>
+<p>Social Media Management • Content Creation • Video Production</p>
+<button class="btn" onclick="openWhatsApp()">Book Now</button>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
-    <h2>Services</h2>
-    <div class="services">
-        <div class="card"><h3>Virtual Tours</h3><p>Immersive 360° experiences.</p></div>
-        <div class="card"><h3>Video Production</h3><p>Cinematic videos.</p></div>
-        <div class="card"><h3>Photography</h3><p>Professional visuals.</p></div>
-    </div>
+<h2>Services</h2>
+<div class="services">
+
+<div class="card">
+<h3>Social Media Management</h3>
+<p>We handle your content, posting, and growth strategy.</p>
+</div>
+
+<div class="card">
+<h3>Content Creation</h3>
+<p>Reels & TikTok videos that attract customers.</p>
+</div>
+
+<div class="card">
+<h3>Video Production</h3>
+<p>High-quality videos for ads and branding.</p>
+</div>
+
+<div class="card">
+<h3>Photography</h3>
+<p>Professional photos for your business.</p>
+</div>
+
+<div class="card">
+<h3>Ads & Marketing</h3>
+<p>Targeted ads that bring real customers.</p>
+</div>
+
+<div class="card">
+<h3>Virtual Tours</h3>
+<p>Perfect for real estate, hotels, and spaces.</p>
+</div>
+
+</div>
 </section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
-    <h2>Portfolio</h2>
-    <div class="portfolio">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" onclick="openLightbox(this.src)">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" onclick="openLightbox(this.src)">
-        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" onclick="openLightbox(this.src)">
-    </div>
+<h2>Our Work</h2>
+<div class="portfolio">
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+<img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511">
+<img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae">
+</div>
 </section>
 
-<!-- CTA -->
-<section style="text-align:center;">
-    <h2>Ready to showcase your property?</h2>
-    <button class="btn" onclick="openWhatsApp()">Book Now</button>
+<!-- PRICING -->
+<section id="pricing">
+<h2>Pricing</h2>
+<div class="pricing">
+
+<div class="card">
+<h3>Starter</h3>
+<p>15,000 Birr / month</p>
+<p>• 10 Videos</p>
+<p>• Basic Editing</p>
+<p>• Posting</p>
+</div>
+
+<div class="card">
+<h3>Growth</h3>
+<p>25,000 Birr / month</p>
+<p>• 20 Videos</p>
+<p>• Strategy + Editing</p>
+<p>• Account Management</p>
+</div>
+
+<div class="card">
+<h3>Premium</h3>
+<p>40,000 Birr / month</p>
+<p>• Full Content Production</p>
+<p>• Ads + Strategy</p>
+<p>• Priority Service</p>
+</div>
+
+</div>
+</section>
+
+<!-- TRUST -->
+<section>
+<h2>Why Choose Us?</h2>
+<p style="text-align:center;">
+✔ High-quality content<br>
+✔ Fast delivery<br>
+✔ Focused on getting you customers
+</p>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-    <h2>Contact</h2>
-    <form action="https://formspree.io/f/yourID" method="POST">
-        <input name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <textarea name="message" placeholder="Message"></textarea>
-        <button class="btn">Send</button>
-    </form>
-</section>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img">
+<h2>Contact Us</h2>
+<p style="text-align:center;">Click below to book instantly</p>
+<div style="text-align:center;">
+<button class="btn" onclick="openWhatsApp()">Chat on WhatsApp</button>
 </div>
+</section>
 
 <!-- WhatsApp -->
 <div class="whatsapp" onclick="openWhatsApp()">💬</div>
 
 <script>
-// Scroll
-function scrollToSection(id){
-    document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-
-// WhatsApp
 function openWhatsApp(){
-    let phone = "2519XXXXXXXX"; // PUT YOUR NUMBER
-    let msg = "Hello, I want your services";
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
-}
-
-// Lightbox
-function openLightbox(src){
-    document.getElementById("lightbox").style.display="flex";
-    document.getElementById("lightbox-img").src=src;
-}
-function closeLightbox(){
-    document.getElementById("lightbox").style.display="none";
+let phone = "251937211464";
+let msg = "Hello, I want your services";
+window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
 }
 </script>
 
 <footer>
-<p>© 2026 BEBA Visuals</p>
+<p>© 2026 BEBA Visuals | Addis Ababa</p>
 </footer>
 
 </body>
