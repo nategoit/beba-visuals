@@ -10,12 +10,15 @@
 
 <style>
 
+/* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:Poppins,sans-serif;
-background:#0b0b0b;
+background:#050505;
 color:#fff;
+line-height:1.6;
+scroll-behavior:smooth;
 }
 
 /* NAV */
@@ -24,23 +27,25 @@ position:fixed;
 width:100%;
 display:flex;
 justify-content:space-between;
-padding:20px 40px;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(10px);
-border-bottom:1px solid #222;
+padding:25px 60px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(12px);
 z-index:1000;
+transition:0.3s;
+}
+
+nav.scrolled{
+background:rgba(0,0,0,0.95);
 }
 
 nav a{
 color:#aaa;
 text-decoration:none;
-margin-left:25px;
+margin-left:30px;
 font-size:14px;
 }
 
-nav a:hover{
-color:#f5a623;
-}
+nav a:hover{color:#fff;}
 
 /* HERO */
 .hero{
@@ -53,14 +58,12 @@ text-align:center;
 overflow:hidden;
 }
 
-.bg-video{
+.hero video{
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-z-index:-1;
+z-index:-2;
 }
 
 .hero::after{
@@ -68,123 +71,167 @@ content:"";
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.6);
-top:0;
-left:0;
+background:linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9));
+z-index:-1;
 }
 
 .hero-content{
-position:relative;
-z-index:2;
-max-width:800px;
+max-width:900px;
 padding:20px;
 }
 
 .hero h1{
-font-size:2.8rem;
-line-height:1.3;
+font-size:3.5rem;
+line-height:1.2;
 }
 
 .hero p{
-margin:20px 0;
-color:#ccc;
+margin-top:20px;
+color:#bbb;
 }
 
 /* BUTTON */
 .btn{
-padding:14px 30px;
+margin-top:30px;
+padding:15px 35px;
 background:#f5a623;
-border:none;
 color:#000;
+border:none;
 font-weight:600;
 cursor:pointer;
+position:relative;
+overflow:hidden;
 transition:0.3s;
 }
 
+.btn::after{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:rgba(255,255,255,0.2);
+transition:0.4s;
+}
+
+.btn:hover::after{
+left:100%;
+}
+
 .btn:hover{
-opacity:0.85;
-transform:scale(1.05);
+transform:translateY(-3px);
+}
+
+/* SCROLL INDICATOR */
+.scroll-indicator{
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+font-size:12px;
+color:#aaa;
+animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translate(-50%,0);}
+50%{transform:translate(-50%,10px);}
 }
 
 /* SECTION */
 section{
-padding:90px 40px;
+padding:120px 80px;
 }
 
-h2{
-text-align:center;
-margin-bottom:40px;
+/* SPLIT */
+.split{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+.split img{
+width:100%;
+border-radius:10px;
+transition:0.4s;
+}
+
+.split img:hover{
+transform:scale(1.05);
 }
 
 /* SERVICES */
 .services{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+gap:30px;
+margin-top:50px;
 }
 
-.card{
-background:#111;
-border:1px solid #222;
-padding:25px;
+.service{
+border-top:1px solid #333;
+padding-top:20px;
 }
 
-.card h3{
-margin-bottom:10px;
-}
-
-/* PORTFOLIO */
-.portfolio{
+/* PROCESS */
+.process{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
-}
-
-.portfolio img{
-width:100%;
-height:250px;
-object-fit:cover;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+text-align:center;
 }
 
 /* PRICING */
 .pricing{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
 }
 
-.price-card{
-background:#111;
+.price{
 border:1px solid #222;
-padding:25px;
+padding:30px;
+transition:0.3s;
 }
 
-.price-card h3{
-margin-bottom:10px;
+.price:hover{
+transform:translateY(-8px);
+border-color:#f5a623;
 }
 
-/* CONTACT */
-.contact{
+/* CTA */
+.cta{
 text-align:center;
-}
-
-/* WHATSAPP */
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-padding:15px;
-border-radius:50%;
-cursor:pointer;
 }
 
 /* FOOTER */
 footer{
 text-align:center;
-padding:20px;
+padding:40px;
 border-top:1px solid #222;
 color:#777;
+}
+
+/* ANIMATION */
+.fade-up{
+opacity:0;
+transform:translateY(40px);
+transition:all 0.8s ease;
+}
+
+.fade-up.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+nav{padding:20px;}
+section{padding:80px 20px;}
+.hero h1{font-size:2.2rem;}
+.split{grid-template-columns:1fr;}
 }
 
 </style>
@@ -197,7 +244,7 @@ color:#777;
 <h3>BEBA Visuals</h3>
 <div>
 <a href="#services">Services</a>
-<a href="#work">Work</a>
+<a href="#process">Process</a>
 <a href="#pricing">Pricing</a>
 <a href="#contact">Contact</a>
 </div>
@@ -205,118 +252,97 @@ color:#777;
 
 <!-- HERO -->
 <section class="hero">
-
-<video autoplay muted loop playsinline class="bg-video">
+<video autoplay muted loop playsinline>
 <source src="video.mp4" type="video/mp4">
 </video>
 
-<div class="hero-content">
+<div class="hero-content fade-up">
 <h1>Content That Drives Real Business Results</h1>
 <p>We help businesses attract customers through high-quality visual content and strategic marketing.</p>
-<button class="btn" onclick="openWhatsApp()">Get a Quote</button>
+<button class="btn" onclick="openWhatsApp()">Start a Project</button>
 </div>
 
+<div class="scroll-indicator">Scroll ↓</div>
+</section>
+
+<!-- ABOUT -->
+<section class="split fade-up">
+<div>
+<h2>Built for Businesses That Want Results</h2>
+<p>We work with restaurants, real estate brands, and growing businesses to produce content that drives measurable outcomes.</p>
+</div>
+<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="services" class="fade-up">
 <h2>Services</h2>
 
 <div class="services">
-
-<div class="card">
-<h3>Content & Social Media Management</h3>
-<p>We plan, create, and manage your content across platforms. From filming to publishing, everything is handled for consistent growth.</p>
-</div>
-
-<div class="card">
-<h3>Video Production</h3>
-<p>Professional video production for advertisements, branding, and campaigns that convert viewers into customers.</p>
-</div>
-
-<div class="card">
-<h3>Photography</h3>
-<p>High-quality images for social media, listings, menus, and marketing materials.</p>
-</div>
-
-<div class="card">
-<h3>Advertising & Marketing</h3>
-<p>Targeted campaigns designed to reach the right audience and generate measurable results.</p>
-</div>
-
-<div class="card">
-<h3>Virtual Tours</h3>
-<p>Immersive visual tours for real estate, hotels, and commercial spaces.</p>
-</div>
-
+<div class="service"><h3>Content & Social Media Management</h3><p>End-to-end planning, creation, and management.</p></div>
+<div class="service"><h3>Video Production</h3><p>Cinematic content for marketing and branding.</p></div>
+<div class="service"><h3>Photography</h3><p>Professional visuals for digital and commercial use.</p></div>
+<div class="service"><h3>Advertising</h3><p>Campaigns focused on customer acquisition.</p></div>
+<div class="service"><h3>Virtual Tours</h3><p>Immersive experiences for real estate and spaces.</p></div>
 </div>
 </section>
 
-<!-- WORK -->
-<section id="work">
-<h2>Selected Work</h2>
+<!-- PROCESS -->
+<section id="process" class="fade-up">
+<h2>Our Process</h2>
 
-<div class="portfolio">
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
-<img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511">
-<img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae">
+<div class="process">
+<div><h3>01. Strategy</h3><p>We define a content plan.</p></div>
+<div><h3>02. Production</h3><p>We create high-quality visuals.</p></div>
+<div><h3>03. Distribution</h3><p>We publish and promote.</p></div>
+<div><h3>04. Growth</h3><p>We optimize for results.</p></div>
 </div>
-
 </section>
 
 <!-- PRICING -->
-<section id="pricing">
+<section id="pricing" class="fade-up">
 <h2>Pricing</h2>
 
 <div class="pricing">
-
-<div class="price-card">
-<h3>Starter Package</h3>
-<p><strong>15,000 Birr / month</strong></p>
-<p>• 10 short-form videos</p>
-<p>• Filming & editing</p>
-<p>• Content posting</p>
-<p>• Basic strategy support</p>
+<div class="price"><h3>Starter</h3><strong>15,000 Birr / month</strong><p>10 videos<br>Filming & editing<br>Posting</p></div>
+<div class="price"><h3>Growth</h3><strong>25,000 Birr / month</strong><p>20 videos<br>Advanced editing<br>Management</p></div>
+<div class="price"><h3>Premium</h3><strong>40,000 Birr / month</strong><p>Full production<br>Ads<br>Strategy</p></div>
 </div>
-
-<div class="price-card">
-<h3>Growth Package</h3>
-<p><strong>25,000 Birr / month</strong></p>
-<p>• 20 short-form videos</p>
-<p>• Advanced editing</p>
-<p>• Full content management</p>
-<p>• Monthly strategy planning</p>
-</div>
-
-<div class="price-card">
-<h3>Premium Package</h3>
-<p><strong>40,000 Birr / month</strong></p>
-<p>• Full content production</p>
-<p>• Ads management</p>
-<p>• Strategy & consulting</p>
-<p>• Priority delivery</p>
-</div>
-
-</div>
-
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact">
-<h2>Contact</h2>
-<p>Tell us about your business and goals. We’ll recommend the best approach.</p>
-<button class="btn" onclick="openWhatsApp()">Chat on WhatsApp</button>
+<section id="contact" class="cta fade-up">
+<h2>Let’s Build Something That Works</h2>
+<p>Tell us about your business. We’ll handle the rest.</p>
+<button class="btn" onclick="openWhatsApp()">Get Started</button>
 </section>
 
-<!-- WHATSAPP -->
-<div class="whatsapp" onclick="openWhatsApp()">💬</div>
-
 <script>
+
+/* WHATSAPP */
 function openWhatsApp(){
 let phone = "251937211464";
-let msg = "Hello, I would like to get more information about your services.";
+let msg = "Hello, I want to start a project with BEBA Visuals.";
 window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
 }
+
+/* SCROLL ANIMATION */
+const elements = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
+}
+});
+},{threshold:0.2});
+
+elements.forEach(el=>observer.observe(el));
+
+/* NAV EFFECT */
+window.addEventListener("scroll", ()=>{
+document.querySelector("nav").classList.toggle("scrolled", window.scrollY > 50);
+});
+
 </script>
 
 <footer>
