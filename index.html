@@ -3,125 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BEBA Visuals</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:Poppins,sans-serif;background:#fff;color:#111;}
+body{
+font-family:Poppins,sans-serif;
+background:#0b0b0b;
+color:#fff;
+overflow-x:hidden;
+}
 
+/* NAV */
 nav{
-position:fixed;width:100%;display:flex;justify-content:space-between;
-padding:20px;background:#fff;border-bottom:1px solid #eee;z-index:1000;
+position:fixed;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:20px 40px;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
+z-index:1000;
+border-bottom:1px solid #222;
 }
 
-nav a{text-decoration:none;margin-left:20px;color:#111;}
-nav a:hover{color:#f5a623;}
+nav a{
+color:#aaa;
+text-decoration:none;
+margin-left:25px;
+font-size:14px;
+}
 
+nav a:hover{
+color:#f5a623;
+}
+
+/* HERO */
 .hero{
-height:100vh;display:flex;flex-direction:column;
-justify-content:center;align-items:center;text-align:center;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
 padding:20px;
+
+background:
+linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+url('https://images.unsplash.com/photo-1492724441997-5dc865305da7') center/cover;
 }
 
-.hero h1{font-size:2.5rem;}
-.hero p{margin:15px 0;color:#555;}
+.hero h1{
+font-size:3rem;
+max-width:800px;
+line-height:1.2;
+}
+
+.hero h1 span{
+color:#f5a623;
+}
+
+.hero p{
+margin:20px 0;
+color:#aaa;
+}
 
 .btn{
-padding:12px 25px;margin:10px;border:none;
-background:#f5a623;color:#000;font-weight:600;cursor:pointer;
+padding:14px 30px;
+background:#f5a623;
+border:none;
+color:#000;
+font-weight:600;
+cursor:pointer;
+margin-top:15px;
 }
 
-section{padding:80px 20px;}
-h2{text-align:center;margin-bottom:40px;}
+/* SECTIONS */
+section{
+padding:100px 40px;
+}
 
-.services,.pricing{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+h2{
+text-align:center;
+margin-bottom:50px;
+font-size:2rem;
+}
+
+/* WHAT WE DO */
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 }
 
 .card{
-border:1px solid #eee;padding:20px;border-radius:10px;
+background:#111;
+border:1px solid #222;
+padding:25px;
+transition:0.3s;
 }
 
+.card:hover{
+transform:translateY(-5px);
+border-color:#f5a623;
+}
+
+/* PORTFOLIO */
 .portfolio{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:15px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
 }
 
-.portfolio img{width:100%;border-radius:10px;}
+.portfolio img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
 
+/* IMPACT */
+.impact{
+text-align:center;
+color:#aaa;
+line-height:1.8;
+}
+
+/* PRICING (REBRANDED) */
+.pricing{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+text-align:center;
+}
+
+.price-card{
+background:#111;
+border:1px solid #222;
+padding:30px;
+}
+
+.price-card:hover{
+border-color:#f5a623;
+}
+
+/* CONTACT */
+.contact{
+text-align:center;
+}
+
+/* WHATSAPP */
 .whatsapp{
-position:fixed;bottom:20px;right:20px;
-background:#25D366;color:#fff;padding:15px;border-radius:50%;
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:15px;
+border-radius:50%;
 cursor:pointer;
 }
 
-footer{text-align:center;padding:20px;border-top:1px solid #eee;}
+/* FOOTER */
+footer{
+text-align:center;
+padding:20px;
+border-top:1px solid #222;
+color:#777;
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
 <h3>BEBA Visuals</h3>
 <div>
-<a href="#services">Services</a>
-<a href="#portfolio">Work</a>
-<a href="#pricing">Pricing</a>
+<a href="#services">What We Do</a>
+<a href="#work">Work</a>
+<a href="#pricing">Approach</a>
 <a href="#contact">Contact</a>
 </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-<h1>We Help Businesses Get More Customers Through Content</h1>
-<p>Social Media Management • Content Creation • Video Production</p>
+<h1>We Turn Content Into <span>Customers</span></h1>
+<p>Cinematic visuals. Strategic distribution. Real business growth.</p>
 <button class="btn" onclick="openWhatsApp()">Book Now</button>
 </section>
 
-<!-- SERVICES -->
+<!-- WHAT WE DO -->
 <section id="services">
-<h2>Services</h2>
+<h2>What We Do</h2>
 <div class="services">
 
-<div class="card">
-<h3>Social Media Management</h3>
-<p>We handle your content, posting, and growth strategy.</p>
-</div>
-
-<div class="card">
-<h3>Content Creation</h3>
-<p>Reels & TikTok videos that attract customers.</p>
-</div>
-
-<div class="card">
-<h3>Video Production</h3>
-<p>High-quality videos for ads and branding.</p>
-</div>
-
-<div class="card">
-<h3>Photography</h3>
-<p>Professional photos for your business.</p>
-</div>
-
-<div class="card">
-<h3>Ads & Marketing</h3>
-<p>Targeted ads that bring real customers.</p>
-</div>
-
-<div class="card">
-<h3>Virtual Tours</h3>
-<p>Perfect for real estate, hotels, and spaces.</p>
-</div>
+<div class="card">Social Media Growth</div>
+<div class="card">Cinematic Content Creation</div>
+<div class="card">Brand Storytelling</div>
+<div class="card">Paid Advertising</div>
+<div class="card">Photography</div>
+<div class="card">Virtual Tours</div>
 
 </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio">
-<h2>Our Work</h2>
+<!-- WORK -->
+<section id="work">
+<h2>Selected Work</h2>
 <div class="portfolio">
 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
 <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511">
@@ -129,64 +222,58 @@ footer{text-align:center;padding:20px;border-top:1px solid #eee;}
 </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
-<h2>Pricing</h2>
-<div class="pricing">
-
-<div class="card">
-<h3>Starter</h3>
-<p>15,000 Birr / month</p>
-<p>• 10 Videos</p>
-<p>• Basic Editing</p>
-<p>• Posting</p>
-</div>
-
-<div class="card">
-<h3>Growth</h3>
-<p>25,000 Birr / month</p>
-<p>• 20 Videos</p>
-<p>• Strategy + Editing</p>
-<p>• Account Management</p>
-</div>
-
-<div class="card">
-<h3>Premium</h3>
-<p>40,000 Birr / month</p>
-<p>• Full Content Production</p>
-<p>• Ads + Strategy</p>
-<p>• Priority Service</p>
-</div>
-
+<!-- IMPACT -->
+<section>
+<h2>Impact</h2>
+<div class="impact">
+<p>We don’t post content. We create attention.</p>
+<p>We don’t chase views. We bring customers.</p>
+<p>We don’t follow trends. We build brands.</p>
 </div>
 </section>
 
-<!-- TRUST -->
-<section>
-<h2>Why Choose Us?</h2>
-<p style="text-align:center;">
-✔ High-quality content<br>
-✔ Fast delivery<br>
-✔ Focused on getting you customers
+<!-- APPROACH -->
+<section id="pricing">
+<h2>How We Work</h2>
+<div class="pricing">
+
+<div class="price-card">
+<h3>Starter Partnership</h3>
+<p>For businesses entering content seriously.</p>
+</div>
+
+<div class="price-card">
+<h3>Growth Partnership</h3>
+<p>For brands ready to scale aggressively.</p>
+</div>
+
+<div class="price-card">
+<h3>Full Scale Production</h3>
+<p>For companies that want dominance.</p>
+</div>
+
+</div>
+
+<p style="text-align:center;margin-top:30px;color:#aaa;">
+Pricing depends on your goals. Let’s talk.
 </p>
+
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-<h2>Contact Us</h2>
-<p style="text-align:center;">Click below to book instantly</p>
-<div style="text-align:center;">
+<section id="contact" class="contact">
+<h2>Let’s Work</h2>
+<p>Tell us about your business and goals.</p>
 <button class="btn" onclick="openWhatsApp()">Chat on WhatsApp</button>
-</div>
 </section>
 
-<!-- WhatsApp -->
+<!-- WHATSAPP -->
 <div class="whatsapp" onclick="openWhatsApp()">💬</div>
 
 <script>
 function openWhatsApp(){
 let phone = "251937211464";
-let msg = "Hello, I want your services";
+let msg = "Hello, I want to work with BEBA Visuals";
 window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
 }
 </script>
