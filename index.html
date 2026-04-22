@@ -11,11 +11,11 @@
 <style>
 
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
 font-family:Poppins,sans-serif;
 background:#0b0b0b;
 color:#fff;
-overflow-x:hidden;
 }
 
 /* NAV */
@@ -27,8 +27,8 @@ justify-content:space-between;
 padding:20px 40px;
 background:rgba(0,0,0,0.7);
 backdrop-filter:blur(10px);
-z-index:1000;
 border-bottom:1px solid #222;
+z-index:1000;
 }
 
 nav a{
@@ -44,34 +44,53 @@ color:#f5a623;
 
 /* HERO */
 .hero{
+position:relative;
 height:100vh;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:20px;
+overflow:hidden;
+}
 
-background:
-linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-url('https://images.unsplash.com/photo-1492724441997-5dc865305da7') center/cover;
+.bg-video{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+top:0;
+left:0;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:800px;
+padding:20px;
 }
 
 .hero h1{
-font-size:3rem;
-max-width:800px;
-line-height:1.2;
-}
-
-.hero h1 span{
-color:#f5a623;
+font-size:2.8rem;
+line-height:1.3;
 }
 
 .hero p{
 margin:20px 0;
-color:#aaa;
+color:#ccc;
 }
 
+/* BUTTON */
 .btn{
 padding:14px 30px;
 background:#f5a623;
@@ -79,21 +98,25 @@ border:none;
 color:#000;
 font-weight:600;
 cursor:pointer;
-margin-top:15px;
+transition:0.3s;
 }
 
-/* SECTIONS */
+.btn:hover{
+opacity:0.85;
+transform:scale(1.05);
+}
+
+/* SECTION */
 section{
-padding:100px 40px;
+padding:90px 40px;
 }
 
 h2{
 text-align:center;
-margin-bottom:50px;
-font-size:2rem;
+margin-bottom:40px;
 }
 
-/* WHAT WE DO */
+/* SERVICES */
 .services{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -104,12 +127,10 @@ gap:20px;
 background:#111;
 border:1px solid #222;
 padding:25px;
-transition:0.3s;
 }
 
-.card:hover{
-transform:translateY(-5px);
-border-color:#f5a623;
+.card h3{
+margin-bottom:10px;
 }
 
 /* PORTFOLIO */
@@ -125,29 +146,21 @@ height:250px;
 object-fit:cover;
 }
 
-/* IMPACT */
-.impact{
-text-align:center;
-color:#aaa;
-line-height:1.8;
-}
-
-/* PRICING (REBRANDED) */
+/* PRICING */
 .pricing{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
-text-align:center;
 }
 
 .price-card{
 background:#111;
 border:1px solid #222;
-padding:30px;
+padding:25px;
 }
 
-.price-card:hover{
-border-color:#f5a623;
+.price-card h3{
+margin-bottom:10px;
 }
 
 /* CONTACT */
@@ -183,31 +196,58 @@ color:#777;
 <nav>
 <h3>BEBA Visuals</h3>
 <div>
-<a href="#services">What We Do</a>
+<a href="#services">Services</a>
 <a href="#work">Work</a>
-<a href="#pricing">Approach</a>
+<a href="#pricing">Pricing</a>
 <a href="#contact">Contact</a>
 </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-<h1>We Turn Content Into <span>Customers</span></h1>
-<p>Cinematic visuals. Strategic distribution. Real business growth.</p>
-<button class="btn" onclick="openWhatsApp()">Book Now</button>
+
+<video autoplay muted loop playsinline class="bg-video">
+<source src="video.mp4" type="video/mp4">
+</video>
+
+<div class="hero-content">
+<h1>Content That Drives Real Business Results</h1>
+<p>We help businesses attract customers through high-quality visual content and strategic marketing.</p>
+<button class="btn" onclick="openWhatsApp()">Get a Quote</button>
+</div>
+
 </section>
 
-<!-- WHAT WE DO -->
+<!-- SERVICES -->
 <section id="services">
-<h2>What We Do</h2>
+<h2>Services</h2>
+
 <div class="services">
 
-<div class="card">Social Media Growth</div>
-<div class="card">Cinematic Content Creation</div>
-<div class="card">Brand Storytelling</div>
-<div class="card">Paid Advertising</div>
-<div class="card">Photography</div>
-<div class="card">Virtual Tours</div>
+<div class="card">
+<h3>Content & Social Media Management</h3>
+<p>We plan, create, and manage your content across platforms. From filming to publishing, everything is handled for consistent growth.</p>
+</div>
+
+<div class="card">
+<h3>Video Production</h3>
+<p>Professional video production for advertisements, branding, and campaigns that convert viewers into customers.</p>
+</div>
+
+<div class="card">
+<h3>Photography</h3>
+<p>High-quality images for social media, listings, menus, and marketing materials.</p>
+</div>
+
+<div class="card">
+<h3>Advertising & Marketing</h3>
+<p>Targeted campaigns designed to reach the right audience and generate measurable results.</p>
+</div>
+
+<div class="card">
+<h3>Virtual Tours</h3>
+<p>Immersive visual tours for real estate, hotels, and commercial spaces.</p>
+</div>
 
 </div>
 </section>
@@ -215,55 +255,56 @@ color:#777;
 <!-- WORK -->
 <section id="work">
 <h2>Selected Work</h2>
+
 <div class="portfolio">
 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
 <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511">
 <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae">
 </div>
+
 </section>
 
-<!-- IMPACT -->
-<section>
-<h2>Impact</h2>
-<div class="impact">
-<p>We don’t post content. We create attention.</p>
-<p>We don’t chase views. We bring customers.</p>
-<p>We don’t follow trends. We build brands.</p>
-</div>
-</section>
-
-<!-- APPROACH -->
+<!-- PRICING -->
 <section id="pricing">
-<h2>How We Work</h2>
+<h2>Pricing</h2>
+
 <div class="pricing">
 
 <div class="price-card">
-<h3>Starter Partnership</h3>
-<p>For businesses entering content seriously.</p>
+<h3>Starter Package</h3>
+<p><strong>15,000 Birr / month</strong></p>
+<p>• 10 short-form videos</p>
+<p>• Filming & editing</p>
+<p>• Content posting</p>
+<p>• Basic strategy support</p>
 </div>
 
 <div class="price-card">
-<h3>Growth Partnership</h3>
-<p>For brands ready to scale aggressively.</p>
+<h3>Growth Package</h3>
+<p><strong>25,000 Birr / month</strong></p>
+<p>• 20 short-form videos</p>
+<p>• Advanced editing</p>
+<p>• Full content management</p>
+<p>• Monthly strategy planning</p>
 </div>
 
 <div class="price-card">
-<h3>Full Scale Production</h3>
-<p>For companies that want dominance.</p>
+<h3>Premium Package</h3>
+<p><strong>40,000 Birr / month</strong></p>
+<p>• Full content production</p>
+<p>• Ads management</p>
+<p>• Strategy & consulting</p>
+<p>• Priority delivery</p>
 </div>
 
 </div>
-
-<p style="text-align:center;margin-top:30px;color:#aaa;">
-Pricing depends on your goals. Let’s talk.
-</p>
 
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact">
-<h2>Let’s Work</h2>
-<p>Tell us about your business and goals.</p>
+<h2>Contact</h2>
+<p>Tell us about your business and goals. We’ll recommend the best approach.</p>
 <button class="btn" onclick="openWhatsApp()">Chat on WhatsApp</button>
 </section>
 
@@ -273,7 +314,7 @@ Pricing depends on your goals. Let’s talk.
 <script>
 function openWhatsApp(){
 let phone = "251937211464";
-let msg = "Hello, I want to work with BEBA Visuals";
+let msg = "Hello, I would like to get more information about your services.";
 window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
 }
 </script>
