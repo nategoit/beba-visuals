@@ -10,6 +10,7 @@
 
 <style>
 
+/* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
@@ -17,6 +18,7 @@ font-family:Poppins,sans-serif;
 background:#050505;
 color:#fff;
 scroll-behavior:smooth;
+overflow-x:hidden;
 }
 
 /* NAV */
@@ -26,8 +28,8 @@ width:100%;
 display:flex;
 justify-content:space-between;
 padding:25px 60px;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(12px);
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(10px);
 z-index:1000;
 transition:0.3s;
 }
@@ -57,18 +59,13 @@ justify-content:center;
 text-align:center;
 }
 
-.hero-content{
-max-width:900px;
-padding:20px;
-}
-
 .hero img{
 width:220px;
 margin-bottom:20px;
 }
 
 .hero h1{
-font-size:3.2rem;
+font-size:3rem;
 }
 
 .hero p{
@@ -83,7 +80,6 @@ padding:15px 35px;
 background:#f5a623;
 color:#000;
 border:none;
-font-weight:600;
 cursor:pointer;
 transition:0.3s;
 }
@@ -92,7 +88,7 @@ transition:0.3s;
 transform:translateY(-3px);
 }
 
-/* SECTIONS */
+/* SECTION */
 section{
 padding:120px 80px;
 }
@@ -104,21 +100,26 @@ grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:25px;
 }
 
-.work img{
+.video-card{
+cursor:pointer;
+overflow:hidden;
+}
+
+.video-card video{
 width:100%;
 height:300px;
 object-fit:cover;
 transition:0.4s;
 }
 
-.work img:hover{
+.video-card:hover video{
 transform:scale(1.05);
 }
 
-/* CASE STUDY */
+/* CASE */
 .case{
 background:#111;
-padding:30px;
+padding:25px;
 margin-top:20px;
 border-left:3px solid #f5a623;
 }
@@ -139,6 +140,36 @@ transition:0.3s;
 .price:hover{
 transform:translateY(-8px);
 border-color:#f5a623;
+}
+
+/* MODAL */
+.video-modal{
+display:none;
+position:fixed;
+z-index:2000;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.95);
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+width:90%;
+max-width:900px;
+position:relative;
+}
+
+.modal-content video{
+width:100%;
+}
+
+.close{
+position:absolute;
+top:-40px;
+right:0;
+font-size:30px;
+cursor:pointer;
 }
 
 /* ANIMATION */
@@ -184,15 +215,11 @@ section{padding:80px 20px;}
 
 <!-- HERO -->
 <section class="hero">
-<div class="hero-content fade">
-
+<div class="fade">
 <img src="logo.png">
-
 <h1>Content That Drives Real Business Results</h1>
-<p>Cinematic visuals that attract, engage, and convert your audience.</p>
-
+<p>Cinematic visuals that attract, engage, and convert.</p>
 <button class="btn" onclick="openWhatsApp()">Start a Project</button>
-
 </div>
 </section>
 
@@ -202,9 +229,23 @@ section{padding:80px 20px;}
 
 <div class="work">
 
-<img src="work1.jpg">
-<img src="work2.jpg">
-<img src="work3.jpg">
+<div class="video-card" data-video="video1.mp4">
+<video muted loop playsinline poster="thumb1.jpg">
+<source src="video1.mp4">
+</video>
+</div>
+
+<div class="video-card" data-video="video2.mp4">
+<video muted loop playsinline poster="thumb2.jpg">
+<source src="video2.mp4">
+</video>
+</div>
+
+<div class="video-card" data-video="video3.mp4">
+<video muted loop playsinline poster="thumb3.jpg">
+<source src="video3.mp4">
+</video>
+</div>
 
 </div>
 </section>
@@ -214,13 +255,13 @@ section{padding:80px 20px;}
 <h2>Case Studies</h2>
 
 <div class="case">
-<h3>Restaurant Growth Campaign</h3>
-<p>We helped increase customer traffic through targeted video campaigns and consistent content production.</p>
+<h3>Restaurant Campaign</h3>
+<p>Content strategy increased foot traffic and customer engagement.</p>
 </div>
 
 <div class="case">
-<h3>Real Estate Visuals</h3>
-<p>High-quality visuals that improved listing engagement and faster property sales.</p>
+<h3>Real Estate Marketing</h3>
+<p>High-quality visuals improved conversions and faster sales.</p>
 </div>
 
 </section>
@@ -233,19 +274,19 @@ section{padding:80px 20px;}
 
 <div class="price">
 <h3>Starter</h3>
-<strong>15,000 Birr / month</strong>
-<p>10 videos<br>Filming & editing<br>Posting</p>
+<strong>15,000 Birr</strong>
+<p>10 videos<br>Filming<br>Posting</p>
 </div>
 
 <div class="price">
 <h3>Growth</h3>
-<strong>25,000 Birr / month</strong>
-<p>20 videos<br>Advanced editing<br>Management</p>
+<strong>25,000 Birr</strong>
+<p>20 videos<br>Editing<br>Management</p>
 </div>
 
 <div class="price">
 <h3>Premium</h3>
-<strong>40,000 Birr / month</strong>
+<strong>40,000 Birr</strong>
 <p>Full production<br>Ads<br>Strategy</p>
 </div>
 
@@ -254,41 +295,77 @@ section{padding:80px 20px;}
 
 <!-- CONTACT -->
 <section id="contact" class="fade">
-<h2>Let’s Work Together</h2>
-<p>Tell us about your business and goals.</p>
+<h2>Let’s Work</h2>
 <button class="btn" onclick="openWhatsApp()">Chat on WhatsApp</button>
 </section>
+
+<!-- MODAL -->
+<div id="videoModal" class="video-modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<video id="modalVideo" controls></video>
+</div>
+</div>
 
 <script>
 
 /* WHATSAPP */
 function openWhatsApp(){
-let phone = "251937211464";
-let msg = "Hello, I want to work with BEBA Visuals.";
-window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+window.open("https://wa.me/251937211464");
 }
 
 /* SCROLL ANIMATION */
-const elements = document.querySelectorAll('.fade');
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('show');
-}
+const elements=document.querySelectorAll('.fade');
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){e.target.classList.add('show');}
 });
-},{threshold:0.2});
-
+});
 elements.forEach(el=>observer.observe(el));
 
-/* NAV EFFECT */
-window.addEventListener("scroll", ()=>{
-document.querySelector("nav").classList.toggle("scrolled", window.scrollY > 50);
+/* NAV SCROLL */
+window.addEventListener("scroll",()=>{
+document.querySelector("nav").classList.toggle("scrolled",window.scrollY>50);
 });
+
+/* VIDEO HOVER */
+document.querySelectorAll('.video-card video').forEach(v=>{
+v.addEventListener('mouseenter',()=>v.play());
+v.addEventListener('mouseleave',()=>{
+v.pause();v.currentTime=0;
+});
+});
+
+/* MODAL */
+const modal=document.getElementById("videoModal");
+const modalVideo=document.getElementById("modalVideo");
+
+document.querySelectorAll(".video-card").forEach(card=>{
+card.onclick=()=>{
+modal.style.display="flex";
+modalVideo.src=card.dataset.video;
+modalVideo.play();
+};
+});
+
+document.querySelector(".close").onclick=()=>{
+modal.style.display="none";
+modalVideo.pause();
+modalVideo.src="";
+};
+
+window.onclick=e=>{
+if(e.target===modal){
+modal.style.display="none";
+modalVideo.pause();
+modalVideo.src="";
+}
+};
 
 </script>
 
 <footer>
-<p>© 2026 BEBA Visuals | Addis Ababa</p>
+<p>© 2026 BEBA Visuals</p>
 </footer>
 
 </body>
